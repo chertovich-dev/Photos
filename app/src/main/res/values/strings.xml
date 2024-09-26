@@ -1,12 +1,21 @@
 <resources>
-    <string name="app_name">Photos</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
     <string name="photos">Photos</string>
     <string name="map">Map</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="log_in">Log in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="message_login_may_not_be_empty">Login may not be empty</string>
+    <string name="message_password_may_not_be_empty">Password may not be empty</string>
+    <string name="message_password_and_confirm_password_are_different">Password and confirm password are different</string>
+    <string name="message_size_of_login_must_be_between_4_and_32">Size of login must be between 4 and 32</string>
+    <string name="message_size_of_password_must_be_between_8_and_500">Size of password must be between 8 and 500</string>
+    <string name="message_unknown_exception">Unknown exception</string>
+    <string name="message_registration_was_successful">Registration was successful</string>
 </resources>

@@ -48,9 +48,13 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
-    val hiltVersion = 2.44
-    implementation("com.google.dagger:hilt-android:$hiltVersion")
-    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    val hiltVer = "2.48"
+    implementation("com.google.dagger:hilt-android:$hiltVer")
+    kapt("com.google.dagger:hilt-android-compiler:$hiltVer")
+
+    val retrofitVer = "2.9.0"
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVer")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofitVer")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
