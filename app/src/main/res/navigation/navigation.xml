@@ -8,15 +8,28 @@
     <fragment
         android:id="@+id/nav_auth"
         android:name="com.chertovich.photos.view.fragments.AuthFragment"
-        tools:layout="@layout/fragment_auth" />
+        tools:layout="@layout/fragment_auth" >
+        <action
+            android:id="@+id/action_nav_auth_to_nav_photos"
+            app:destination="@id/nav_photos" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_photos"
         android:name="com.chertovich.photos.view.fragments.PhotosFragment"
-        tools:layout="@layout/fragment_photos" />
+        tools:layout="@layout/fragment_photos" >
+        <action
+            android:id="@+id/action_nav_photos_to_nav_photo"
+            app:destination="@id/nav_photo" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_map"
         android:name="com.chertovich.photos.view.fragments.MapFragment"
         tools:layout="@layout/fragment_photos" />
+
+    <fragment
+        android:id="@+id/nav_photo"
+        android:name="com.chertovich.photos.view.fragments.PhotoFragment"
+        tools:layout="@layout/fragment_photo" />"
 </navigation>
