@@ -20,15 +20,12 @@ class MapFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMapBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-//        val textView: TextView = binding.textHome
-//        mainViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
-
-        return root
+        return binding.root
     }
+
+
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
