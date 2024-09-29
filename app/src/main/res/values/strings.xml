@@ -25,4 +25,7 @@
     <string name="message_image_is_too_big">Image is too big</string>
     <string name="message_exception_loading_photo">Exception loading photo</string>
     <string name="map_key">AIzaSyCmWdU5xXOk-Ub1xZtU2QtgFA76fue5b5U</string>
+    <string name="delete_photo">Delete photo?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

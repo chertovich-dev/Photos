@@ -21,6 +21,7 @@ import com.chertovich.photos.FIRST_INDEX
 import com.chertovich.photos.R
 import com.chertovich.photos.databinding.ActivityMainBinding
 import com.chertovich.photos.dateToServerDate
+import com.chertovich.photos.view.fragments.DeleteDialogFragment
 import com.chertovich.photos.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
@@ -111,8 +112,8 @@ class MainActivity : AppCompatActivity() {
 
                 requestLocationPermissions()
             } else {
-//                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-//                binding.appBarMain.fab.visibility = View.INVISIBLE
+                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                binding.appBarMain.fab.visibility = View.INVISIBLE
             }
 
             supportActionBar?.setDisplayHomeAsUpEnabled(authorized)
@@ -126,14 +127,14 @@ class MainActivity : AppCompatActivity() {
             navController.navigate(nav.action)
         }
 
-        // !!!
-//        binding.appBarMain.fab.visibility = View.VISIBLE
-//        navController.navigate(R.id.action_nav_auth_to_nav_photos)
-//
+        viewModel.deleteDialogLiveData.observe(this) { index ->
+            val deleteDialogFragment: DeleteDialogFragment = DeleteDialogFragment.newInstance(index)
+            deleteDialogFragment.show(supportFragmentManager, null)
+        }
+
         binding.appBarMain.fab.setOnClickListener {
             takePhoto()
         }
-
     }
 
     override fun onSupportNavigateUp(): Boolean {

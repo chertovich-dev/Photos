@@ -69,4 +69,8 @@ class PhotosFragment : Fragment(), OnPhotosRecyclerListener {
     override fun onLoadPhoto(index: Int) {
         viewModel.loadPhoto(index)
     }
+
+    override fun onLongClick(index: Int) {
+        viewModel.showDeleteDialog(index)
+    }
 }

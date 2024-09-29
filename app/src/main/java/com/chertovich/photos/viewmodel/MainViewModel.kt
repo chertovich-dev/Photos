@@ -25,7 +25,6 @@ import com.chertovich.photos.model.Repository
 import com.chertovich.photos.view.log
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.util.Date
 import javax.inject.Inject
@@ -70,6 +69,9 @@ class MainViewModel
 
     private val _photoLiveData = MutableLiveData<Photo>()
     val photoLiveData: LiveData<Photo> = _photoLiveData
+
+    private val _deleteDialogLiveData = SingleLiveEvent<Int>()
+    val deleteDialogLiveData: LiveData<Int> = _deleteDialogLiveData
 
     private fun sendMessage(message: String) {
         _messageLiveData.value = message
@@ -140,10 +142,6 @@ class MainViewModel
         val serverDate = dateToServerDate(Date().time)
 
         viewModelScope.launch {
-
-
-
-
             try {
                 val coordinate = repository.getCoordinate()
                 val photoBase64 = repository.getPhotoBase64(uri)
@@ -170,6 +168,12 @@ class MainViewModel
             }
 
             _photosLiveData.value = photos
+
+            repository.deleteAllImagesFromDB()
+
+            for (image in images) {
+                repository.insertImageIntoDB(image)
+            }
         }
     }
 
@@ -197,6 +201,25 @@ class MainViewModel
             if (photo.isLoaded) {
                 _photoLiveData.value = photo
                 _navLiveData.value = NavPhotosToPhoto()
+            }
+        }
+    }
+
+    fun showDeleteDialog(index: Int) {
+        _deleteDialogLiveData.value = index
+    }
+
+    fun deletePhoto(index: Int) {
+        viewModelScope.launch {
+            if (index in photos.indices) {
+                val photo = photos[index]
+                try {
+                    repository.deleteImage(token, photo.image.id)
+                    photos.removeAt(index)
+                    photosChanged()
+                } catch (e: Exception) {
+                    handleException(e)
+                }
             }
         }
     }

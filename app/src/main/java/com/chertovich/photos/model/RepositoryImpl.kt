@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Base64
 import androidx.core.app.ActivityCompat
+import androidx.room.Room
 import com.chertovich.photos.FIRST_INDEX
 import com.chertovich.photos.ImageIsTooBigException
 import com.chertovich.photos.LoadingPhotoException
@@ -25,6 +26,8 @@ import com.chertovich.photos.data.Image
 import com.chertovich.photos.data.RegData
 import com.chertovich.photos.data.UploadImage
 import com.chertovich.photos.data.User
+import com.chertovich.photos.model.db.AppDatabase
+import com.chertovich.photos.model.db.DATABASE_NAME
 import com.chertovich.photos.view.log
 import com.google.android.gms.location.CurrentLocationRequest
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -85,6 +88,8 @@ class RepositoryImpl @Inject constructor(@ApplicationContext private val appCont
         .build()
 
     private val photosService = retrofit.create(PhotosService::class.java)
+
+    private val db = Room.databaseBuilder(appContext, AppDatabase::class.java, DATABASE_NAME).build()
 
     private var fusedLocationClient = LocationServices.getFusedLocationProviderClient(appContext)
 
@@ -226,7 +231,6 @@ class RepositoryImpl @Inject constructor(@ApplicationContext private val appCont
     }
 
     override suspend fun uploadImage(token: String, uploadImage: UploadImage): Image = withContext(Dispatchers.IO) {
-        log("start")
         val response = photosService.uploadImage(token, uploadImage)
 
         val data: Image? = if (response.isSuccessful) {
@@ -255,6 +259,14 @@ class RepositoryImpl @Inject constructor(@ApplicationContext private val appCont
             throw getPhotosException(response.errorBody())
         } else {
             return@withContext data
+        }
+    }
+
+    override suspend fun deleteImage(token: String, id: Int) = withContext(Dispatchers.IO) {
+        val response = photosService.deleteImage(token, id)
+
+        if (!response.isSuccessful) {
+            throw UnknownException()
         }
     }
 
@@ -293,6 +305,22 @@ class RepositoryImpl @Inject constructor(@ApplicationContext private val appCont
             return@withContext coordinate
         } catch (e: Exception) {
             return@withContext Coordinate()
+        }
+    }
+
+    override suspend fun deleteAllImagesFromDB() = withContext(Dispatchers.IO) {
+        try {
+            db.getImageDao().deleteAllImages()
+        } catch (e: Exception) {
+            //
+        }
+    }
+
+    override suspend fun insertImageIntoDB(image: Image) = withContext(Dispatchers.IO) {
+        try {
+            db.getImageDao().insertImage(image.toImageEntity())
+        } catch (e: Exception) {
+            //
         }
     }
 }

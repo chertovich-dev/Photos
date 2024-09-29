@@ -1,8 +1,8 @@
 package com.chertovich.photos.view.adapters
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnLongClickListener
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -21,6 +21,7 @@ private const val format = "dd.MM.yyyy"
 interface OnPhotosRecyclerListener {
     fun onLoadPhoto(index: Int)
     fun onSelectPhoto(index: Int)
+    fun onLongClick(index: Int)
 }
 
 class PhotosRecyclerAdapter(private val photos: List<Photo>, private val listener: OnPhotosRecyclerListener) :
@@ -66,6 +67,16 @@ class PhotosRecyclerAdapter(private val photos: List<Photo>, private val listene
             if (index != WRONG_INDEX) {
                 listener.onSelectPhoto(index)
             }
+        }
+
+        photosViewHolder.imageView.setOnLongClickListener {
+            val index = getIndex(photosViewHolder)
+
+            if (index != WRONG_INDEX) {
+                listener.onLongClick(index)
+            }
+
+            true
         }
 
         return photosViewHolder

@@ -61,6 +61,12 @@ dependencies {
     implementation("com.google.android.gms:play-services-location:21.0.1")
     implementation("com.google.android.gms:play-services-maps:18.1.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.4.1")
+
+    val roomVer = "2.6.1"
+    implementation("androidx.room:room-runtime:$roomVer")
+    implementation("androidx.room:room-ktx:$roomVer")
+    kapt ("androidx.room:room-compiler:$roomVer")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
