@@ -1,14 +1,11 @@
 package com.chertovich.photos.model
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Base64
-import androidx.core.app.ActivityCompat
 import androidx.room.Room
 import com.chertovich.photos.FIRST_INDEX
 import com.chertovich.photos.ImageIsTooBigException
@@ -28,9 +25,7 @@ import com.chertovich.photos.data.UploadImage
 import com.chertovich.photos.data.User
 import com.chertovich.photos.model.db.AppDatabase
 import com.chertovich.photos.model.db.DATABASE_NAME
-import com.chertovich.photos.view.log
 import com.google.android.gms.location.CurrentLocationRequest
-import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
@@ -96,8 +91,6 @@ class RepositoryImpl @Inject constructor(@ApplicationContext private val appCont
     private fun getPhotosException(responseBody: ResponseBody?): PhotosException {
         val errorJSON = responseBody?.string()
         val jsonObject = JSONObject(errorJSON)
-
-        log("errorJSON = $errorJSON")
 
         try {
             val error = jsonObject.getString(KEY_ERROR)

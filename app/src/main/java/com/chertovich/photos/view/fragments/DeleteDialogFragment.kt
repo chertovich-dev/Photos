@@ -3,14 +3,10 @@ package com.chertovich.photos.view.fragments
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.chertovich.photos.R
 import com.chertovich.photos.WRONG_INDEX
-import com.chertovich.photos.view.log
 import com.chertovich.photos.viewmodel.MainViewModel
 
 class DeleteDialogFragment : DialogFragment() {
@@ -40,8 +36,10 @@ class DeleteDialogFragment : DialogFragment() {
         fun newInstance(index: Int): DeleteDialogFragment {
             val args = Bundle()
             args.putInt(KEY_INDEX, index)
+
             val fragment = DeleteDialogFragment()
             fragment.arguments = args
+
             return fragment
         }
     }

@@ -1,20 +1,16 @@
 package com.chertovich.photos.view.fragments
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.chertovich.photos.data.Photo
 import com.chertovich.photos.data.PhotoState
 import com.chertovich.photos.databinding.FragmentPhotosBinding
 import com.chertovich.photos.view.adapters.OnPhotosRecyclerListener
 import com.chertovich.photos.view.adapters.PhotosRecyclerAdapter
-import com.chertovich.photos.view.log
 import com.chertovich.photos.viewmodel.MainViewModel
 
 private const val COL_COUNT = 3

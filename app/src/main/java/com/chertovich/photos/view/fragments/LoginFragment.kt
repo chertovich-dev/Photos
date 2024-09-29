@@ -38,10 +38,6 @@ class LoginFragment : Fragment() {
             val password = binding.editTextPassword.text.toString()
             viewModel.signIn(login, password)
         }
-
-        // !!!
-        binding.editTextLogin.setText("qqq3")
-        binding.editTextPassword.setText("11111111")
     }
 
     override fun onDestroyView() {

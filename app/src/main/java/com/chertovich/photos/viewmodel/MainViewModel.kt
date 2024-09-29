@@ -22,7 +22,6 @@ import com.chertovich.photos.data.UploadImage
 import com.chertovich.photos.data.User
 import com.chertovich.photos.dateToServerDate
 import com.chertovich.photos.model.Repository
-import com.chertovich.photos.view.log
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
@@ -130,8 +129,6 @@ class MainViewModel
                 user = repository.signIn(regData)
                 _navLiveData.value = NavAuthToPhotos()
                 _authorizedLiveData.value = user
-
-                log("userData = $user")
             } catch (e: Exception) {
                 handleException(e)
             }

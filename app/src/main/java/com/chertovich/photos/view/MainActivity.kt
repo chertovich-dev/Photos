@@ -20,12 +20,10 @@ import androidx.core.content.FileProvider
 import com.chertovich.photos.FIRST_INDEX
 import com.chertovich.photos.R
 import com.chertovich.photos.databinding.ActivityMainBinding
-import com.chertovich.photos.dateToServerDate
 import com.chertovich.photos.view.fragments.DeleteDialogFragment
 import com.chertovich.photos.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
-import java.util.Date
 
 private const val FILE_NAME = "photo.jpg"
 

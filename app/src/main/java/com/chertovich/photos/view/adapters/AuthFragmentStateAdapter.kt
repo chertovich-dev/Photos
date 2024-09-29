@@ -7,8 +7,8 @@ import com.chertovich.photos.view.fragments.RegisterFragment
 
 private const val TAB_COUNT = 2
 
-val TAB_LOGIN = 0
-val TAB_REGISTER = 1
+const val TAB_LOGIN = 0
+const val TAB_REGISTER = 1
 
 const val ERROR_WRONG_TAB_INDEX = "Неверный индекс вкладки"
 

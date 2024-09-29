@@ -6,7 +6,6 @@ import com.chertovich.photos.data.RegData
 import com.chertovich.photos.data.UserResponse
 import com.chertovich.photos.data.UploadImage
 import okhttp3.ResponseBody
-
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -15,7 +14,6 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Url
-import java.io.InputStream
 
 interface PhotosService {
     @POST("/api/account/signup")

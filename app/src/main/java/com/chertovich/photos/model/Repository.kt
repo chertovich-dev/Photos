@@ -11,13 +11,13 @@ interface Repository {
     suspend fun signUp(regData: RegData): User
     suspend fun signIn(regData: RegData): User
 
-    suspend fun getPhotoBase64(uri: Uri): String
-
     suspend fun uploadImage(token: String, uploadImage: UploadImage): Image
     suspend fun loadImages(token: String): List<Image>
+    suspend fun loadImage(url: String): ByteArray
     suspend fun deleteImage(token: String, id: Int)
 
-    suspend fun loadImage(url: String): ByteArray
+    suspend fun getPhotoBase64(uri: Uri): String
+
     suspend fun getCoordinate(): Coordinate
 
     suspend fun deleteAllImagesFromDB()
