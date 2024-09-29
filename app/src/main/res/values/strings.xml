@@ -24,4 +24,5 @@
     <string name="message_cannot_get_photo">Cannot get photo</string>
     <string name="message_image_is_too_big">Image is too big</string>
     <string name="message_exception_loading_photo">Exception loading photo</string>
+    <string name="map_key">AIzaSyDjFxFaxAwEHxzkBEPwtVchlO2Whe6LmAU</string>
 </resources>
